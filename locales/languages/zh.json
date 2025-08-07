@@ -290,6 +290,9 @@
   },
   "login": {
     "title": "欢迎回来！",
+    "welcome_title":"Welcome to CryptoBridge",
+    "welcome_tip": "Seamless Acess to{{flag_br}}Crypto & Flat in One Platform",
+    "password_placeholder2": "Enter password",
     "password": "密码",
     "password_placeholder": "Enter MetaMask password",
     "unlock_button": "解锁",
@@ -5142,5 +5145,26 @@
   "time": {
     "minutes_format": "{{count}} minute",
     "minutes_format_plural": "{{count}} minutes"
+  },
+    "settings": {
+    "lock_up": "Lock now",
+    "bank_account": "Bank Account",
+    "preferences": "Preferences",
+    "default_currency": "Default currency",
+    "language": "Language",
+    "security": "Security",
+    "lock_timer": "Auto-lock Timer",
+    "change_password": "Change password",
+    "import_wallet_via_privacy_key": "Import Wallet via Private Key",
+    "import_wallet_via_secret_recovery_phrase": "Import Wallet via Secret Recovery Phrase",
+    "other": "Other",
+    "deposit_via_wise": "Deposit via Wise",
+    "contact_us": "Contact Us",
+    "resources": "Resources",
+    "customer_support": "Customer Support",
+    "terms_and_conditions": "Terms and Conditions",
+    "privacy_policy": "Privacy Policy",
+    "user_manual": "User Manual",
+    "faq": "FAQ"
   }
 }

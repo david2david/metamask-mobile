@@ -10,6 +10,7 @@ import SimpleWebview from '../../Views/SimpleWebview';
 import Settings from '../../Views/Settings';
 import GeneralSettings from '../../Views/Settings/GeneralSettings';
 import AdvancedSettings from '../../Views/Settings/AdvancedSettings';
+import LockTimerSettings from '../../Views/Settings/LockTimerSettings';
 import BackupAndSyncSettings from '../../Views/Settings/Identity/BackupAndSyncSettings';
 import SecuritySettings from '../../Views/Settings/SecuritySettings';
 import ExperimentalSettings from '../../Views/Settings/ExperimentalSettings';
@@ -305,16 +306,41 @@ const NotificationsOptInStack = () => (
 );
 
 const SettingsFlow = () => (
-  <Stack.Navigator initialRouteName={'Settings'}>
+  <Stack.Navigator
+    initialRouteName={'Settings'}
+    screenOptions={{
+      headerShown: true,
+      headerTitleAlign: 'left',
+      headerTitleStyle: {
+        paddingBottom: 10,
+        textAlign: 'left',
+        borderBottomWidth: 1,
+        borderBottomColor: '#E0E0E0',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 4,
+      }
+    }}
+    mode={'modal'}
+  >
     <Stack.Screen
       name="Settings"
       component={Settings}
-      options={Settings.navigationOptions}
+      options={
+        Settings.navigationOptions
+      }
     />
     <Stack.Screen
       name="GeneralSettings"
       component={GeneralSettings}
-      options={GeneralSettings.navigationOptions}
+      options={{...GeneralSettings.navigationOptions, headerShown: true}}
+    />
+    <Stack.Screen
+      name="LockTimerSettings"
+      component={LockTimerSettings}
+      options={LockTimerSettings.navigationOptions}
     />
     <Stack.Screen
       name="AdvancedSettings"
@@ -363,13 +389,15 @@ const SettingsFlow = () => (
       component={AppInformation}
       options={AppInformation.navigationOptions}
     />
-    {process.env.MM_ENABLE_SETTINGS_PAGE_DEV_OPTIONS === 'true' && (
-      <Stack.Screen
-        name={Routes.SETTINGS.DEVELOPER_OPTIONS}
-        component={DeveloperOptions}
-        options={DeveloperOptions.navigationOptions}
-      />
-    )}
+    {
+      process.env.MM_ENABLE_SETTINGS_PAGE_DEV_OPTIONS === 'true' && (
+        <Stack.Screen
+          name={Routes.SETTINGS.DEVELOPER_OPTIONS}
+          component={DeveloperOptions}
+          options={DeveloperOptions.navigationOptions}
+        />
+      )
+    }
 
     <Stack.Screen
       name="ContactsSettings"
@@ -454,7 +482,7 @@ const SettingsFlow = () => (
     {
       ///: END:ONLY_INCLUDE_IF
     }
-  </Stack.Navigator>
+  </Stack.Navigator >
 );
 
 const HomeTabs = () => {

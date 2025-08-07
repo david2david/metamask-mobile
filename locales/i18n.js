@@ -123,6 +123,13 @@ export function getLanguages() {
   };
 }
 
+export function getLanguagesCustom() {
+  return {
+    en: 'English',
+    ja: 'Japanese',
+    // zh: 'Chinese - China',
+  };
+}
 // Allow RTL alignment in RTL languages
 ReactNative.I18nManager.allowRTL(isRTL);
 

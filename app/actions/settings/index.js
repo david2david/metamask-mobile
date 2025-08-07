@@ -40,6 +40,13 @@ export function setLockTime(lockTime) {
   };
 }
 
+export function setIdleLock(idleLock) {
+  return {
+    type: 'SET_IDLE_LOCK',
+    idleLock,
+  };
+}
+
 export function setPrimaryCurrency(primaryCurrency) {
   return {
     type: 'SET_PRIMARY_CURRENCY',

@@ -276,6 +276,24 @@ import wifioffSVG from './assets/wifi-off.svg';
 import wifiSVG from './assets/wifi.svg';
 import xSVG from './assets/x.svg';
 
+import bankSVG2 from './svg/icon-bank.svg';
+import eyeCloseSVG from './svg/icon-close.svg';
+import contactSVG from './svg/icon-contact.svg';
+import currencySVG from './svg/icon-currency.svg';
+import faqSVG from './svg/icon-faq.svg';
+import languageSVG from './svg/icon-language.svg';
+import lockSVG2 from './svg/icon-lock.svg';
+import manualSVG from './svg/icon-manual.svg';
+import eypeOpenSVG from './svg/icon-open.svg';
+import passwordSVG from './svg/icon-password.svg';
+import privacySVG from './svg/icon-privacy.svg';
+import securitySVG2 from './svg/icon-secure.svg';
+import supportSVG from './svg/icon-support.svg';
+import termsSVG from './svg/icon-terms.svg';
+import timerSVG from './svg/icon-timer.svg';
+import wiseSVG from './svg/icon-wise.svg';
+import cryptoBridgeSVG from './svg/CryptoBridge_Logo.svg';
+import frame from './svg/icon-frame.svg';
 /**
  * Asset stored by icon name
  */
@@ -551,4 +569,23 @@ export const assetByIconName: AssetByIconName = {
   [IconName.WifiOff]: wifioffSVG,
   [IconName.Wifi]: wifiSVG,
   [IconName.X]: xSVG,
+
+  [IconName.Bank2]: bankSVG2,
+  [IconName.EyeClose]: eyeCloseSVG,
+  [IconName.Contact]: contactSVG,
+  [IconName.Currency]: currencySVG,
+  [IconName.Faq]: faqSVG,
+  [IconName.Language]: languageSVG,
+  [IconName.Lock2]: lockSVG2,
+  [IconName.Manual]: manualSVG,
+  [IconName.EyeOpen]: eypeOpenSVG,
+  [IconName.Password]: passwordSVG,
+  [IconName.Privacy]: privacySVG,
+  [IconName.Secure]: securitySVG2,
+  [IconName.Support]: supportSVG,
+  [IconName.Terms]: termsSVG,
+  [IconName.Timer]: timerSVG,
+  [IconName.Wise]: wiseSVG,
+  [IconName.CryptoBridge]: cryptoBridgeSVG,
+  [IconName.Frame]: frame,
 };

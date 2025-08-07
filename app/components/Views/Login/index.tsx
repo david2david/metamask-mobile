@@ -20,7 +20,7 @@ import Button, {
   ButtonVariants,
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
-import { strings } from '../../../../locales/i18n';
+import I18n, { strings } from '../../../../locales/i18n';
 import FadeOutOverlay from '../../UI/FadeOutOverlay';
 import {
   OnboardingActionTypes,
@@ -68,7 +68,7 @@ import {
 } from '../../../util/trace';
 import TextField, {
   TextFieldSize,
-} from '../../../component-library/components/Form/TextField';
+} from '../../../component-library/components/Form/Password';
 import Label from '../../../component-library/components/Form/Label';
 import HelpText, {
   HelpTextSeverity,
@@ -95,6 +95,7 @@ import ReduxService from '../../../core/redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BIOMETRY_TYPE } from 'react-native-keychain';
 import METAMASK_NAME from '../../../images/branding/metamask-name.png';
+import CryptoBridge_Logo from '../../../images/branding/CryptoBridge_Logo.png';
 import OAuthService from '../../../core/OAuthService/OAuthService';
 import ConcealingFox from '../../../animations/Concealing_Fox.json';
 import SearchingFox from '../../../animations/Searching_Fox.json';
@@ -114,6 +115,8 @@ import {
   SeedlessOnboardingControllerError,
   SeedlessOnboardingControllerErrorType,
 } from '../../../core/Engine/controllers/seedless-onboarding-controller/error';
+import Icon from '../../../component-library/components/Icons/Icon/Icon';
+import { IconSize } from '../../../component-library/components/Icons/Icon';
 
 // In android, having {} will cause the styles to update state
 // using a constant will prevent this
@@ -141,7 +144,7 @@ const Login: React.FC<LoginProps> = ({ saveOnboardingEvent }) => {
   const [password, setPassword] = useState('');
   const [biometryType, setBiometryType] = useState<
     BIOMETRY_TYPE | AUTHENTICATION_TYPE | string | null
-  >(null);
+  >();
   const [rememberMe, setRememberMe] = useState(false);
   const [biometryChoice, setBiometryChoice] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -672,11 +675,11 @@ const Login: React.FC<LoginProps> = ({ saveOnboardingEvent }) => {
           style={styles.wrapper}
         >
           <View testID={LoginViewSelectors.CONTAINER} style={styles.container}>
-            <Image
+            {/* <Image
               source={METAMASK_NAME}
               style={styles.metamaskName}
               resizeMethod={'auto'}
-            />
+            /> */}
 
             <TouchableOpacity
               style={styles.foxWrapper}
@@ -684,24 +687,38 @@ const Login: React.FC<LoginProps> = ({ saveOnboardingEvent }) => {
               onLongPress={handleDownloadStateLogs}
               activeOpacity={1}
             >
-              <LottieView
+              {/* <LottieView
                 style={styles.image}
                 autoPlay
                 loop
                 source={lottieSrc}
                 resizeMode="contain"
+              /> */}
+              <Image
+                source={CryptoBridge_Logo}
+                style={styles.image}
+                resizeMethod="auto"
               />
             </TouchableOpacity>
 
             <Text
-              variant={TextVariant.DisplayMD}
+              variant={TextVariant.HeadingLG}
+              color={TextColor.Default}
+              style={styles.title}
+              numberOfLines={1}
+              ellipsizeMode='tail'
+              testID={LoginViewSelectors.TITLE_ID}
+            >
+              {strings('login.welcome_title')}
+            </Text>
+            <Text
+              variant={TextVariant.BodyXS}
               color={TextColor.Default}
               style={styles.title}
               testID={LoginViewSelectors.TITLE_ID}
             >
-              {strings('login.title')}
+              {strings('login.welcome_tip', {'flag_br': '\n'})}
             </Text>
-
             <View style={styles.field}>
               <View style={styles.labelContainer}>
                 <Label
@@ -713,12 +730,11 @@ const Login: React.FC<LoginProps> = ({ saveOnboardingEvent }) => {
               </View>
               <TextField
                 size={TextFieldSize.Lg}
-                placeholder={strings('login.password_placeholder')}
+                placeholder={strings('login.password_placeholder2')}
                 placeholderTextColor={colors.text.alternative}
                 testID={LoginViewSelectors.PASSWORD_INPUT}
                 returnKeyType={'done'}
                 autoCapitalize="none"
-                secureTextEntry
                 ref={fieldRef}
                 onChangeText={handlePasswordChange}
                 value={password}

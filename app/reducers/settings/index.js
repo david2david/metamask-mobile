@@ -4,11 +4,13 @@ const initialState = {
   searchEngine: AppConstants.DEFAULT_SEARCH_ENGINE,
   primaryCurrency: 'ETH',
   lockTime: -1, // Disabled by default
+  idleLock: false,
   useBlockieIcon: true,
   hideZeroBalanceTokens: false,
   basicFunctionalityEnabled: true,
   deepLinkModalDisabled: false,
 };
+
 
 const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -21,6 +23,11 @@ const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         lockTime: action.lockTime,
+      };
+    case 'SET_IDLE_LOCK':
+      return {
+        ...state,
+        idleLock: action.idleLock,
       };
     case 'SET_SHOW_HEX_DATA':
       return {

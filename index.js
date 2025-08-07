@@ -21,6 +21,9 @@ import { enableFreeze } from 'react-native-screens';
 
 if (__DEV__) {
   require('./ReactotronConfig');
+  // import('@react-native-community/cli-debugger-ui/setup').then(() => {
+  //   console.log('React DevTools connected');
+  // });
 }
 
 enableFreeze(true);
@@ -110,5 +113,12 @@ function setupGlobalErrorHandler() {
   // override the global handler to provide custom error handling
   global.ErrorUtils.setGlobalHandler(handleCustomError);
 }
+
+// 手动连接 React DevTools
+// if (__DEV__) {
+//   import('@react-native-community/cli-debugger-ui/setup').then(() => {
+//     console.log('React DevTools connected');
+//   });
+// }
 
 setupGlobalErrorHandler();

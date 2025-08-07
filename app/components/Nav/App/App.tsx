@@ -10,7 +10,7 @@ import {
   useRoute,
   useNavigationState,
 } from '@react-navigation/native';
-import { Linking } from 'react-native';
+import { Linking, View, Text, TouchableOpacity, Image } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../../Views/Login';
 import QRTabSwitcher from '../../Views/QRTabSwitcher';
@@ -161,6 +161,18 @@ import { SmartAccountUpdateModal } from '../../Views/confirmations/components/sm
 import PrivacyOverlay from '../../Views/PrivacyOverlay';
 import { PayWithModal } from '../../Views/confirmations/components/modals/pay-with-modal/pay-with-modal';
 import { PayWithNetworkModal } from '../../Views/confirmations/components/modals/pay-with-network-modal/pay-with-network-modal';
+import { AlignItems, FlexDirection } from '../../UI/Box/box.types';
+import Icon, {
+  IconName,
+  IconSize,
+  IconColor,
+} from '../../../component-library/components/Icons/Icon';
+import CryptoBridge from '../../../images/branding/crypto-bridge.png';
+import I18n, {
+  strings,
+  getLanguagesCustom,
+  setLocale,
+} from '../../../../locales/i18n';
 
 const clearStackNavigatorOptions = {
   headerShown: false,
@@ -264,7 +276,29 @@ const OnboardingNav = () => (
     <Stack.Screen
       name="Rehydrate"
       component={Login}
-      options={{ headerShown: false }}
+      options={{
+        headerShown: true,
+        headerLeft: () => (
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+            <Image
+              source={CryptoBridge}
+              style={{
+                width: 32,
+                height: 32,
+                marginLeft: 8,
+                resizeMode: 'contain',
+              }}
+              resizeMethod="auto"
+            />
+          </View>
+        ),
+        headerRight: () => (
+          <TouchableOpacity onPress={() => {/* 你的按钮事件 */ }}>
+            <Text>English</Text>
+            <Icon name={IconName.CryptoBridge} size={IconSize.Lg} style={{ marginRight: 16 }} />
+          </TouchableOpacity>
+        ),
+      }}
     />
   </Stack.Navigator>
 );
@@ -747,7 +781,23 @@ const ModalSmartAccountOptIn = () => (
 
 const AppFlow = () => {
   const userLoggedIn = useSelector(selectUserLoggedIn);
-
+  const languages = getLanguagesCustom();
+  type Language_Type_Custom = 'en' | 'ja';
+  const languageOptions = Object.keys(languages).map((key: string) => ({
+    value: key,
+    label: languages[key as Language_Type_Custom],
+    key,
+  }));
+  const navigation = useNavigation<any>();
+  const [state, setState] = useState({
+    currentLanguage: I18n.locale,
+  })
+  const selectLanguage = (language: string) => {
+    if (language === state.currentLanguage) return;
+    setLocale(language);
+    setState({ currentLanguage: language });
+    setTimeout(() => navigation.navigate('Home'), 100);
+  };
   return (
     <>
       <Stack.Navigator
@@ -772,7 +822,41 @@ const AppFlow = () => {
         <Stack.Screen
           name={Routes.ONBOARDING.LOGIN}
           component={Login}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: true,
+            headerStyle: {
+              borderBottomWidth: 1,
+              borderBottomColor: '#E0E0E0',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 4,
+            },
+            headerTitle: () => (
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+              </View>
+            ),
+            headerLeft: () => (
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Image
+                  source={CryptoBridge}
+                  style={{
+                    width: 140,
+                    marginLeft: 8,
+                    resizeMode: 'contain',
+                  }}
+                  resizeMethod="auto"
+                />
+              </View>
+            ),
+            headerRight: () => (
+              <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} onPress={() => {/* 你的按钮事件 */ }}>
+                <Icon name={IconName.Frame} size={IconSize.Lg} style={{ marginRight: 6 }} />
+                <Text>{state.currentLanguage}</Text>
+              </TouchableOpacity>
+            ),
+          }}
         />
         <Stack.Screen
           name={Routes.MODAL.MAX_BROWSER_TABS_MODAL}

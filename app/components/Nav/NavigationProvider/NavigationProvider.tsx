@@ -17,7 +17,6 @@ import {
 } from '../../../util/trace';
 import getUIStartupSpan from '../../../core/Performance/UIStartup';
 import { NavigationProviderProps } from './types';
-
 const Stack = createStackNavigator();
 
 /**

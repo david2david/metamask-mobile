@@ -44,7 +44,7 @@ const styleSheet = (params: { theme: Theme }) => {
     },
     title: {
       textAlign: 'center',
-      marginVertical: 24,
+      marginVertical: 20,
     },
     field: {
       marginBottom: Device.isAndroid() ? 0 : 10,

@@ -18,7 +18,7 @@ import { isTest } from '../../../util/test/utils';
 import { SnapsExecutionWebView } from '../../../lib/snaps';
 ///: END:ONLY_INCLUDE_IF
 import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated';
-
+import AppLockWrapper from '../Settings/LockTimerSettings/AppLockWrapper';
 /**
  * Top level of the component hierarchy
  * App component is wrapped by the provider from react-redux
@@ -75,7 +75,10 @@ const Root = ({ foxCode }: RootProps) => {
                 <ToastContextWrapper>
                   <ErrorBoundary view="Root">
                     <ReducedMotionConfig mode={ReduceMotion.Never} />
-                    <App />
+                    <AppLockWrapper>
+                      {/* The App component is the main entry point of the application */}
+                      <App />   
+                    </AppLockWrapper>
                   </ErrorBoundary>
                 </ToastContextWrapper>
               </ControllersGate>
